@@ -1,13 +1,10 @@
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "app.js",
+  "/style.css",
   "/db.js",
   "/index.js",
-  "manifest.webmanifest",
-  "/icons/icon-192x192",
-  "/icons/icon-512x512",
-  "/style.css"
+  "/manifest.webmanifest"
 ];
 
 const CACHE_NAME = "static-cache-v2";
@@ -18,7 +15,14 @@ self.addEventListener("install", function(evt) {
   evt.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log("Your files were pre-cached successfully!");
-      return cache.addAll(FILES_TO_CACHE);
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/style.css",
+        "/db.js",
+        "/index.js",
+        "/manifest.webmanifest"
+      ]);
     })
   );
 
@@ -27,6 +31,7 @@ self.addEventListener("install", function(evt) {
 
 // activate
 self.addEventListener("activate", function(evt) {
+  console.log("activated");
   evt.waitUntil(
     caches.keys().then(keyList => {
       return Promise.all(
@@ -36,7 +41,7 @@ self.addEventListener("activate", function(evt) {
             return caches.delete(key);
           }
         })
-      );
+      ).catch(err => console.log(err));
     })
   );
 
@@ -45,10 +50,12 @@ self.addEventListener("activate", function(evt) {
 
 // fetch
 self.addEventListener("fetch", function(evt) {
+  console.log("fetched", evt.request.url);
+
   if (evt.request.url.includes("/api/")) {
     evt.respondWith(
       caches
-        .open(DATA_CACHE_NAME)
+        .open(FILES_TO_CACHE)
         .then(cache => {
           return fetch(evt.request)
             .then(response => {
