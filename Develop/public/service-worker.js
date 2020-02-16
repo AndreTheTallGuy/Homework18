@@ -52,7 +52,7 @@ self.addEventListener("activate", function(evt) {
 self.addEventListener("fetch", function(evt) {
   console.log("fetched", evt.request.url);
 
-  if (evt.request.url.includes("/api/")) {
+  if (evt.request.url.includes("/")) {
     evt.respondWith(
       caches
         .open(FILES_TO_CACHE)
