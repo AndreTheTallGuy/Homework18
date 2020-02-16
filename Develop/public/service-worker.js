@@ -25,10 +25,8 @@ self.addEventListener("install", function(evt) {
       ]);
     })
   );
-
   self.skipWaiting();
 });
-
 // activate
 self.addEventListener("activate", function(evt) {
   console.log("activated");
@@ -44,10 +42,8 @@ self.addEventListener("activate", function(evt) {
       ).catch(err => console.log(err));
     })
   );
-
   self.clients.claim();
 });
-
 // fetch
 self.addEventListener("fetch", function(evt) {
   if (evt.request.url.includes("/")) {
