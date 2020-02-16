@@ -6,4 +6,8 @@ This is a budget tracking app that allows a user to keep track of their budget w
 
 # Usage
 
-Simply type the transaction name and amount into the app and
+Simply type the transaction name and amount into the app then click either "add funds" or "subtract funds" and watch your transaction appear in the graph.
+
+# Installation
+
+In Chrome, please click on the dots in the top right corner and then click on download. That's it!
