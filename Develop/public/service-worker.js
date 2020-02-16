@@ -63,7 +63,6 @@ self.addEventListener("fetch", function(evt) {
               if (response.status === 200) {
                 cache.put(evt.request.url, response.clone());
               }
-
               return response;
             })
             .catch(err => {
@@ -73,7 +72,6 @@ self.addEventListener("fetch", function(evt) {
         })
         .catch(err => console.log(err))
     );
-
     return;
   }
 });
