@@ -50,8 +50,6 @@ self.addEventListener("activate", function(evt) {
 
 // fetch
 self.addEventListener("fetch", function(evt) {
-  console.log("fetched", evt.request.url);
-
   if (evt.request.url.includes("/")) {
     evt.respondWith(
       caches
